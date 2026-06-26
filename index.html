@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이동윤 | Portfolio</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <div class="loader-logo">DY</div>
+    <p>Loading Portfolio</p>
+    <div class="loader-bar"><span></span></div>
+  </div>
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <div class="background">
+    <div class="noise"></div>
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
+    <div class="grid-bg"></div>
+    <div class="stars" id="stars"></div>
+  </div>
+
+
+  <header class="header">
+    <a href="index.html#home" class="logo magnetic">
+      <span>DY</span>
+      Dong-Yoon Lee
+    </a>
+
+    <nav class="nav" id="nav">
+      <a class="magnetic" href="index.html#home">Home</a>
+      <a class="magnetic" href="journey.html">Journey</a>
+      <a class="magnetic" href="skills.html">Skills</a>
+      <a class="magnetic" href="awards.html">Awards</a>
+      <a class="magnetic" href="projects.html">Projects</a>
+      <a class="magnetic" href="contact.html">Contact</a>
+    </nav>
+
+    <button class="menu-btn magnetic" id="menuBtn" aria-label="메뉴 열기">☰</button>
+  </header>
+
+
+  <main>
+    <section id="home" class="section hero">
+      <div class="hero-text">
+        <p class="badge reveal zoom">Student Developer Portfolio</p>
+        <h1 class="reveal left">안녕하세요.<br />저는 <span>이동윤</span>입니다.</h1>
+        <p class="typing-line reveal left"><span id="typingText"></span><span class="cursor">|</span></p>
+        <p class="hero-desc reveal left">
+          게임 개발과 웹 개발을 배우며, 아이디어를 실제로 동작하는 서비스로 만드는 것을 좋아합니다.
+          작은 프로젝트부터 직접 만들고 고치며 성장하고 있습니다.
+        </p>
+        <div class="hero-buttons reveal left">
+          <a href="#about" class="btn primary magnetic">나에 대해 보기</a>
+          <a href="projects.html" class="btn magnetic">프로젝트 보기</a>
+        </div>
+        <div class="hero-stats reveal up">
+          <div class="tilt-card"><strong>16세</strong><span>중학교 3학년</span></div>
+          <div class="tilt-card"><strong>Goal</strong><span>한국디지털미디어고등학교</span></div>
+          <div class="tilt-card"><strong>Dream</strong><span>Developer</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal right">
+        <div class="orbit"></div>
+        <div class="floating-card main-card shine-card tilt-card">
+          <div class="profile-circle">DY</div>
+          <h2>Dong-Yoon Lee</h2>
+          <p>Developer Student</p>
+        </div>
+        <div class="mini-card card-top tilt-card"><span>현재 목표</span><strong>디미고 입학</strong></div>
+        <div class="mini-card card-bottom tilt-card"><span>관심 분야</span><strong>게임 · 웹 · C++</strong></div>
+      </div>
+
+      <a href="#about" class="scroll-down magnetic"><span>Scroll</span><div class="mouse"><div></div></div></a>
+    </section>
+
+    <section id="about" class="section about-section">
+      <div class="section-kicker reveal left">Chapter 01</div>
+      <div class="section-title reveal left"><p>About Me</p><h2>저를 소개합니다</h2></div>
+
+      <div class="about-layout">
+        <div class="about-text glass-panel reveal left tilt-card">
+          <h3>개발자를 꿈꾸는 개발자 지망생 학생</h3>
+          <p>
+            저는 16세 중학교 3학년 이동윤입니다.
+            게임 개발과 웹 개발에 관심이 많고, 직접 아이디어를 떠올리고 그것을 코드로 구현하는 과정을 좋아합니다.
+          </p>
+          <p>
+            아직 배우는 중이지만, 앞으로 더 많은 프로젝트를 만들며 개발자로 성장해 나가고 싶습니다.
+            특히 한국디지털미디어고등학교 입학을 목표로 꾸준히 공부하고 있습니다.
+          </p>
+        </div>
+        <div class="quote-card glass-panel reveal right tilt-card">
+          <span>My Mindset</span>
+          <p>“좋은 아이디어는 직접 만들어 보면서 더 멋진 결과물이 된다고 생각합니다.”</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="profile" class="section compact-section">
+      <div class="section-kicker reveal left">Chapter 02</div>
+      <div class="section-title reveal left"><p>Profile</p><h2>기본 정보</h2></div>
+      <div class="profile-grid">
+        <div class="info-card reveal up tilt-card"><span>Name</span><strong>이동윤</strong><p>Dong-Yoon Lee</p></div>
+        <div class="info-card reveal up tilt-card"><span>Age</span><strong>16세</strong><p>Middle School 3</p></div>
+        <div class="info-card reveal up tilt-card"><span>Goal</span><strong>디미고 입학</strong><p>한국디지털미디어고등학교</p></div>
+        <div class="info-card reveal up tilt-card"><span>Project</span><strong>Portfolio Site</strong><p>나만의 소개 사이트 제작 중</p></div>
+      </div>
+    </section>
+
+    <section class="section compact-section">
+      <div class="section-kicker reveal left">Chapter 03</div>
+      <div class="section-title reveal left"><p>Next Pages</p><h2>더 자세히 보기</h2></div>
+      <div class="portal-grid">
+        <a href="journey.html" class="portal-card reveal left tilt-card magnetic"><span>01</span><h3>Journey</h3><p>제가 개발을 배워온 성장 과정을 확인할 수 있습니다.</p></a>
+        <a href="projects.html" class="portal-card reveal up tilt-card magnetic"><span>02</span><h3>Projects</h3><p>현재까지 만든 프로젝트와 앞으로 추가될 프로젝트를 볼 수 있습니다.</p></a>
+        <a href="skills.html" class="portal-card reveal right tilt-card magnetic"><span>03</span><h3>Skills</h3><p>제가 공부하고 있는 기술과 현재 수준을 확인할 수 있습니다.</p></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><p>© 2026 Dong-Yoon Lee. All rights reserved.</p></footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
