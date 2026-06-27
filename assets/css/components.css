@@ -9,78 +9,128 @@
 .btn {
     position: relative;
     isolation: isolate;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
+
     padding: 16px 28px;
+
     border: 1px solid rgba(255,255,255,.15);
     border-radius: 16px;
+
     color: #fff;
     background: rgba(255,255,255,.04);
+
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
+
     font-size: 15px;
     font-weight: 800;
-    text-decoration: none;
     line-height: 1;
+    text-decoration: none;
+
     overflow: hidden;
     cursor: pointer;
     user-select: none;
+
     transition:
-        transform .35s ease,
+        transform .35s var(--ease-out),
         box-shadow .35s ease,
         border-color .35s ease,
         background .35s ease;
 }
 
-/* Shine effect */
-
+/* Button shine effect */
 .btn::before {
     content: "";
+
     position: absolute;
     top: 0;
     left: -120%;
+
     width: 70%;
     height: 100%;
+
     background: linear-gradient(
         120deg,
         transparent,
         rgba(255,255,255,.45),
         transparent
     );
+
     transform: skewX(-25deg);
     transition: left .7s ease;
+
     z-index: 1;
     pointer-events: none;
 }
 
-/* Soft glow */
-
+/* Button soft glow */
 .btn::after {
     content: "";
+
     position: absolute;
     inset: -12px;
+
     border-radius: inherit;
+
     background: radial-gradient(
         circle,
         rgba(111,146,255,.34),
         transparent 65%
     );
+
     opacity: 0;
     filter: blur(16px);
     transition: opacity .35s ease;
+
     z-index: -2;
     pointer-events: none;
 }
 
-.btn span {
+/* Button inner elements */
+.btn > * {
     position: relative;
     z-index: 2;
+}
+
+.btn :is(i, svg) {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: currentColor;
+    stroke: currentColor;
+    stroke-width: 2.3;
+}
+
+.btn-icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: currentColor;
+}
+
+.btn-icon path {
+    fill: currentColor;
+}
+
+/* Arrow text/icon movement */
+.btn .btn-arrow,
+.btn > span:last-child {
     display: inline-block;
     transition: transform .3s ease;
 }
 
+.btn:hover .btn-arrow,
+.btn:hover > span:last-child {
+    transform: translateX(5px);
+}
+
+/* Button states */
 .btn:hover {
     transform: translateY(-4px) scale(1.03);
     background: rgba(255,255,255,.08);
@@ -95,22 +145,21 @@
     opacity: 1;
 }
 
-.btn:hover span {
-    transform: translateX(5px);
-}
-
 .btn:active {
     transform: scale(.96);
 }
 
+/* Primary button */
 .btn.primary {
     border-color: transparent;
+
     background: linear-gradient(
         135deg,
         #5A7DFF,
         #6F92FF,
         #7B61FF
     );
+
     box-shadow: 0 8px 30px rgba(90,125,255,.25);
 }
 
@@ -128,6 +177,7 @@
         0 0 60px rgba(111,146,255,.25);
 }
 
+/* Secondary button */
 .btn:not(.primary)::after {
     background: radial-gradient(
         circle,
@@ -148,15 +198,24 @@
 .project-wide-card {
     margin-top: 24px;
     padding: 34px;
+
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 24px;
-    border-radius: 24px;
-    background: linear-gradient(145deg, rgba(255,255,255,.11), rgba(255,255,255,.035));
+
     border: 1px solid rgba(255,255,255,.12);
+    border-radius: 24px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.11),
+        rgba(255,255,255,.035)
+    );
+
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
+
     box-shadow: var(--shadow-card);
 }
 
@@ -179,23 +238,48 @@
     font-weight: 900;
 }
 
-@media (max-width: 760px) {
-    .project-wide-card {
-        grid-template-columns: 1fr;
-    }
-}
-
-:is(.glass-panel, .info-card, .interest-card, .personality-card, .quote-card, .dream-card, .plan-card, .timeline-content, .contact-card, .message-card, .project-card-full, .project-card-empty, .detail-panel, .portal-card, .skill-panel, .learning-card, .award-feature, .award-card) {
+:is(
+    .glass-panel,
+    .info-card,
+    .interest-card,
+    .personality-card,
+    .quote-card,
+    .dream-card,
+    .plan-card,
+    .timeline-content,
+    .contact-card,
+    .message-card,
+    .project-card-full,
+    .project-card-empty,
+    .detail-panel,
+    .portal-card,
+    .skill-panel,
+    .learning-card,
+    .award-feature,
+    .award-card
+) {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, .12);
+
+    border: 1px solid rgba(255,255,255,.12);
     border-radius: var(--radius-lg);
-    background: linear-gradient(145deg, rgba(255, 255, 255, .11), rgba(255, 255, 255, .035));
+
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.11),
+        rgba(255,255,255,.035)
+    );
+
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
-    box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, .08);
+
+    box-shadow:
+        var(--shadow-card),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
     transform-style: preserve-3d;
     will-change: transform;
+
     transition:
         transform .38s var(--ease-out),
         border-color .38s ease,
@@ -203,125 +287,224 @@
         background .38s ease;
 }
 
-:is(.glass-panel, .info-card, .interest-card, .personality-card, .quote-card, .dream-card, .plan-card, .timeline-content, .contact-card, .message-card, .project-card-full, .project-card-empty, .detail-panel, .portal-card, .skill-panel, .learning-card, .award-feature, .award-card)::before {
+:is(
+    .glass-panel,
+    .info-card,
+    .interest-card,
+    .personality-card,
+    .quote-card,
+    .dream-card,
+    .plan-card,
+    .timeline-content,
+    .contact-card,
+    .message-card,
+    .project-card-full,
+    .project-card-empty,
+    .detail-panel,
+    .portal-card,
+    .skill-panel,
+    .learning-card,
+    .award-feature,
+    .award-card
+)::before {
     content: "";
+
     position: absolute;
     inset: 0;
+
     background:
-        radial-gradient(circle at 15% 0%, rgba(111, 146, 255, .22), transparent 34%),
-        linear-gradient(120deg, transparent, rgba(255, 255, 255, .05), transparent);
+        radial-gradient(circle at 15% 0%, rgba(111,146,255,.22), transparent 34%),
+        linear-gradient(120deg, transparent, rgba(255,255,255,.05), transparent);
+
     pointer-events: none;
     opacity: .9;
 }
 
-:is(.glass-panel, .info-card, .interest-card, .personality-card, .quote-card, .dream-card, .plan-card, .timeline-content, .contact-card, .message-card, .project-card-full, .project-card-empty, .detail-panel, .portal-card, .skill-panel, .learning-card, .award-feature, .award-card)::after {
+:is(
+    .glass-panel,
+    .info-card,
+    .interest-card,
+    .personality-card,
+    .quote-card,
+    .dream-card,
+    .plan-card,
+    .timeline-content,
+    .contact-card,
+    .message-card,
+    .project-card-full,
+    .project-card-empty,
+    .detail-panel,
+    .portal-card,
+    .skill-panel,
+    .learning-card,
+    .award-feature,
+    .award-card
+)::after {
     content: "";
+
     position: absolute;
     top: -80%;
     left: -80%;
+
     width: 70%;
     height: 220%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .12), transparent);
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.12),
+        transparent
+    );
+
     transform: rotate(25deg);
     transition: left .75s ease;
+
     pointer-events: none;
 }
 
-:is(.glass-panel, .info-card, .interest-card, .personality-card, .quote-card, .dream-card, .plan-card, .timeline-content, .contact-card, .message-card, .project-card-full, .project-card-empty, .detail-panel, .portal-card, .skill-panel, .learning-card, .award-feature, .award-card):hover {
+:is(
+    .glass-panel,
+    .info-card,
+    .interest-card,
+    .personality-card,
+    .quote-card,
+    .dream-card,
+    .plan-card,
+    .timeline-content,
+    .contact-card,
+    .message-card,
+    .project-card-full,
+    .project-card-empty,
+    .detail-panel,
+    .portal-card,
+    .skill-panel,
+    .learning-card,
+    .award-feature,
+    .award-card
+):hover {
     transform: translateY(-8px) scale(1.01);
-    border-color: rgba(111, 146, 255, .42);
-    background: linear-gradient(145deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .055));
-    box-shadow: var(--shadow-card-hover), inset 0 1px 0 rgba(255, 255, 255, .12);
+    border-color: rgba(111,146,255,.42);
+
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.14),
+        rgba(255,255,255,.055)
+    );
+
+    box-shadow:
+        var(--shadow-card-hover),
+        inset 0 1px 0 rgba(255,255,255,.12);
 }
 
-:is(.glass-panel, .info-card, .interest-card, .personality-card, .quote-card, .dream-card, .plan-card, .timeline-content, .contact-card, .message-card, .project-card-full, .project-card-empty, .detail-panel, .portal-card, .skill-panel, .learning-card, .award-feature, .award-card):hover::after {
+:is(
+    .glass-panel,
+    .info-card,
+    .interest-card,
+    .personality-card,
+    .quote-card,
+    .dream-card,
+    .plan-card,
+    .timeline-content,
+    .contact-card,
+    .message-card,
+    .project-card-full,
+    .project-card-empty,
+    .detail-panel,
+    .portal-card,
+    .skill-panel,
+    .learning-card,
+    .award-feature,
+    .award-card
+):hover::after {
     left: 130%;
 }
 
+/* =========================
+   Tags
+========================= */
+
 .tag {
-    display:inline-block;
-    padding:7px 12px;
-    border-radius:999px;
-    color:#dbe4ff;
-    background:rgba(111,146,255,.18);
-    border:1px solid rgba(111,146,255,.28);
-    font-size:14px;
-    font-weight:900;
+    display: inline-block;
+
+    padding: 7px 12px;
+
+    border: 1px solid rgba(111,146,255,.28);
+    border-radius: 999px;
+
+    color: #dbe4ff;
+    background: rgba(111,146,255,.18);
+
+    font-size: 14px;
+    font-weight: 900;
 }
 
 .tech-tags {
-    display:flex;
-    gap:9px;
-    flex-wrap:wrap;
-    margin-bottom:18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+
+    margin-bottom: 18px;
 }
 
 .tech-tags span {
-    padding:8px 12px;
-    border-radius:999px;
-    background:rgba(111,146,255,.14);
-    border:1px solid rgba(111,146,255,.28);
-    font-size:13px;
-    font-weight:900;
+    padding: 8px 12px;
+
+    border: 1px solid rgba(111,146,255,.28);
+    border-radius: 999px;
+
+    background: rgba(111,146,255,.14);
+
+    font-size: 13px;
+    font-weight: 900;
 }
 
 .tech-tags.big span {
-    font-size:16px;
-    padding:10px 14px;
+    padding: 10px 14px;
+    font-size: 16px;
 }
 
+/* =========================
+   Progress
+========================= */
+
 .progress-box {
-    margin:18px 0 22px;
+    margin: 18px 0 22px;
 }
 
 .progress-text {
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:8px;
-    color:var(--muted);
-    font-weight:900;
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+
+    color: var(--muted);
+    font-weight: 900;
 }
 
 .progress-bar {
-    height:9px;
-    border-radius:999px;
-    background:rgba(255,255,255,.1);
-    overflow:hidden;
+    height: 9px;
+
+    border-radius: 999px;
+    background: rgba(255,255,255,.1);
+
+    overflow: hidden;
 }
 
 .progress-bar span {
-    display:block;
-    height:100%;
-    border-radius:999px;
-    background:linear-gradient(90deg,var(--blue),var(--cyan));
+    display: block;
+
+    height: 100%;
+
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
 }
 
-/* 버튼/카드 hover 부드럽게 */
+/* =========================
+   Responsive
+========================= */
 
-.btn,
-.glass-panel,
-.info-card,
-.interest-card,
-.personality-card,
-.quote-card,
-.dream-card,
-.plan-card,
-.timeline-content,
-.contact-card,
-.message-card,
-.project-card-full,
-.project-card-empty,
-.detail-panel,
-.portal-card,
-.skill-panel,
-.learning-card,
-.award-feature,
-.award-card {
-    transition-timing-function: var(--ease-out);
-}
-
-.btn :is(i, svg) {
-    width: 18px;
-    height: 18px;
-    stroke-width: 2.3;
+@media (max-width: 760px) {
+    .project-wide-card {
+        grid-template-columns: 1fr;
+    }
 }
