@@ -1,26 +1,28 @@
-# 이동윤 포트폴리오 사이트 - Full Upgrade
+# Portfolio v1.1 Update - 2026.06.27
 
-## 이번 버전에서 추가된 것
-- 전체 디자인 리뉴얼
-- `skills.html` 추가
-- `awards.html` 추가
-- 상단 메뉴에 Skills / Awards 추가
-- Hero 배경, 카드, 섹션 디자인 개선
-- 기존 Projects / Contact 구조 유지
+### 추가 및 개선된 기능
+- 페이지별 브라우저 제목 적용
+- Favicon 추가
+- Thumbnail 이미지 추가
+- SEO 메타 태그 추가
+- Open Graph 메타 태그 추가
+- Twitter Card 메타 태그 추가
+- 랜덤 로딩 문구 적용
+- 404 페이지 추가
+- CSS 코드 가독성 개선
+- CSS 오류 수정
+- Skills 페이지 진행 바 애니메이션 개선
+- 전체 사이트 메타 정보 관리
 
-## 페이지 구조
-- `index.html`
-- `journey.html`
-- `projects.html`
-- `projects/portfolio.html`
-- `skills.html`
-- `awards.html`
-- `contact.html`
+### 배포 주소
+https://dongyoonlee616-eng.github.io/portfolio/
 
-## 수정 위치
-- 기술 수준 수정: `skills.html`
-- 수상 기록 수정: `awards.html`
-- 프로젝트 목록 수정: `projects.html`
-- 프로젝트 상세 수정: `projects/portfolio.html`
-- 연락처 수정: `contact.html`
-- 디자인 색상 수정: `assets/css/style.css`의 `:root`
+### 페이지 구성
+- Home
+- Journey
+- Skills
+- Awards
+- Projects
+- Project Detail
+- Contact
+- 404 Page
