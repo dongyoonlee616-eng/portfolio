@@ -1,4 +1,4 @@
-# Portfolio v1.1 Update - 2026.06.27
+# Portfolio v1.0.1 Update - 2026.06.27
 
 ### 추가 및 개선된 기능
 - 페이지별 브라우저 제목 적용
