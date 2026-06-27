@@ -301,8 +301,9 @@ a {
 }
 
 .section {
-    min-height:100vh;
-    padding:132px 8% 90px;
+    padding: 120px 8%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .compact-section {
@@ -394,46 +395,141 @@ a {
     flex-wrap:wrap;
 }
 
+/* =========================
+   Button System v1.1.2
+========================= */
+
 .btn {
-    position:relative;
-    display:inline-block;
-    padding:13px 20px;
-    border-radius:15px;
-    border:1px solid rgba(255,255,255,.16);
-    color:#fff;
-    transition:.22s;
-    background:rgba(255,255,255,.05);
-    font-weight:800;
-    overflow:hidden;
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 28px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 16px;
+    color: #fff;
+    background: rgba(255,255,255,.04);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    font-size: 15px;
+    font-weight: 800;
+    text-decoration: none;
+    line-height: 1;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease,
+        background .35s ease;
 }
 
+/* Shine effect */
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.45),
+        transparent
+    );
+    transform: skewX(-25deg);
+    transition: left .7s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Soft glow */
 .btn::after {
-    content:"";
-    position:absolute;
-    inset:0;
-    transform:translateX(-120%);
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
-    transition:.45s;
+    content: "";
+    position: absolute;
+    inset: -12px;
+    border-radius: inherit;
+    background: radial-gradient(
+        circle,
+        rgba(111,146,255,.34),
+        transparent 65%
+    );
+    opacity: 0;
+    filter: blur(16px);
+    transition: opacity .35s ease;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.btn span {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    transition: transform .3s ease;
 }
 
 .btn:hover {
-    transform:translateY(-3px);
-    background:rgba(255,255,255,.1);
+    transform: translateY(-4px) scale(1.03);
+    background: rgba(255,255,255,.08);
+    border-color: rgba(111,146,255,.4);
+}
+
+.btn:hover::before {
+    left: 140%;
 }
 
 .btn:hover::after {
-    transform:translateX(120%);
+    opacity: 1;
+}
+
+.btn:hover span {
+    transform: translateX(5px);
+}
+
+.btn:active {
+    transform: scale(.96);
 }
 
 .btn.primary {
-    background:linear-gradient(135deg,var(--blue),var(--purple));
-    border-color:transparent;
-    box-shadow:0 18px 44px rgba(111,146,255,.3);
+    border-color: transparent;
+    background: linear-gradient(
+        135deg,
+        #5A7DFF,
+        #6F92FF,
+        #7B61FF
+    );
+    box-shadow: 0 8px 30px rgba(90,125,255,.25);
+}
+
+.btn.primary::after {
+    background: radial-gradient(
+        circle,
+        rgba(111,146,255,.5),
+        transparent 65%
+    );
+}
+
+.btn.primary:hover {
+    box-shadow:
+        0 12px 40px rgba(90,125,255,.45),
+        0 0 60px rgba(111,146,255,.25);
+}
+
+.btn:not(.primary)::after {
+    background: radial-gradient(
+        circle,
+        rgba(255,255,255,.18),
+        transparent 65%
+    );
 }
 
 .big-btn {
-    margin-top:24px;
-    padding:15px 24px;
+    margin-top: 24px;
+    padding: 16px 30px;
 }
 
 .hero-stats,.project-stats {
@@ -690,6 +786,165 @@ a {
     background:radial-gradient(circle at 15% 0%,rgba(111,146,255,.16),transparent 34%);
     pointer-events:none;
 }
+/* =========================
+   Card System v1.1.2
+========================= */
+
+.glass-panel,
+.info-card,
+.interest-card,
+.personality-card,
+.quote-card,
+.dream-card,
+.plan-card,
+.timeline-content,
+.contact-card,
+.message-card,
+.project-card-full,
+.project-card-empty,
+.detail-panel,
+.portal-card,
+.skill-panel,
+.learning-card,
+.award-feature,
+.award-card {
+    position: relative;
+    overflow: hidden;
+    border-color: rgba(255,255,255,.12);
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.11),
+        rgba(255,255,255,.035)
+    );
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow:
+        0 18px 60px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.08);
+    transition:
+        transform .38s cubic-bezier(.22,1,.36,1),
+        border-color .38s ease,
+        box-shadow .38s ease,
+        background .38s ease;
+}
+
+/* 카드 내부 은은한 빛 */
+.glass-panel::before,
+.info-card::before,
+.interest-card::before,
+.personality-card::before,
+.quote-card::before,
+.dream-card::before,
+.plan-card::before,
+.timeline-content::before,
+.contact-card::before,
+.message-card::before,
+.project-card-full::before,
+.project-card-empty::before,
+.detail-panel::before,
+.portal-card::before,
+.skill-panel::before,
+.learning-card::before,
+.award-feature::before,
+.award-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 0%, rgba(111,146,255,.22), transparent 34%),
+        linear-gradient(120deg, transparent, rgba(255,255,255,.05), transparent);
+    pointer-events: none;
+    opacity: .9;
+}
+
+/* 카드 위로 스쳐가는 빛 */
+.glass-panel::after,
+.info-card::after,
+.interest-card::after,
+.personality-card::after,
+.quote-card::after,
+.dream-card::after,
+.plan-card::after,
+.timeline-content::after,
+.contact-card::after,
+.message-card::after,
+.project-card-full::after,
+.project-card-empty::after,
+.detail-panel::after,
+.portal-card::after,
+.skill-panel::after,
+.learning-card::after,
+.award-feature::after,
+.award-card::after {
+    content: "";
+    position: absolute;
+    top: -80%;
+    left: -80%;
+    width: 70%;
+    height: 220%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.12),
+        transparent
+    );
+    transform: rotate(25deg);
+    transition: left .75s ease;
+    pointer-events: none;
+}
+
+/* Hover 효과 */
+.glass-panel:hover,
+.info-card:hover,
+.interest-card:hover,
+.personality-card:hover,
+.quote-card:hover,
+.dream-card:hover,
+.plan-card:hover,
+.timeline-content:hover,
+.contact-card:hover,
+.message-card:hover,
+.project-card-full:hover,
+.project-card-empty:hover,
+.detail-panel:hover,
+.portal-card:hover,
+.skill-panel:hover,
+.learning-card:hover,
+.award-feature:hover,
+.award-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: rgba(111,146,255,.42);
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.14),
+        rgba(255,255,255,.055)
+    );
+    box-shadow:
+        0 28px 80px rgba(0,0,0,.32),
+        0 0 46px rgba(111,146,255,.14),
+        inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.glass-panel:hover::after,
+.info-card:hover::after,
+.interest-card:hover::after,
+.personality-card:hover::after,
+.quote-card:hover::after,
+.dream-card:hover::after,
+.plan-card:hover::after,
+.timeline-content:hover::after,
+.contact-card:hover::after,
+.message-card:hover::after,
+.project-card-full:hover::after,
+.project-card-empty:hover::after,
+.detail-panel:hover::after,
+.portal-card:hover::after,
+.skill-panel:hover::after,
+.learning-card:hover::after,
+.award-feature:hover::after,
+.award-card:hover::after {
+    left: 130%;
+}
 
 .about-layout {
     display:grid;
@@ -817,11 +1072,6 @@ a {
     padding:31px;
     transition:.25s;
     min-height:238px;
-}
-
-.info-card:hover,.interest-card:hover,.personality-card:hover,.plan-card:hover,.timeline-content:hover,.contact-card:hover,.project-card-full:hover,.project-card-empty:hover,.detail-panel:hover,.portal-card:hover,.skill-panel:hover,.learning-card:hover,.award-feature:hover,.award-card:hover {
-    background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.05));
-    border-color:rgba(111,146,255,.32);
 }
 
 .personality-card span,.plan-card span {
@@ -1273,7 +1523,7 @@ a {
 
 .reveal {
     opacity:0;
-    transition:opacity .85s ease,transform .85s ease,filter .85s ease;
+    transition:opacity 1s cubic-bezier(.22,1,.36,1),transform 1s cubic-bezier(.22,1,.36,1),filter 1s cubic-bezier(.22,1,.36,1);
     filter:blur(8px);
 }
 
@@ -1393,8 +1643,8 @@ a {
         right:10px;
     }
 
-    .section {
-        padding:118px 5% 76px;
+    .section{
+        padding:90px 24px;
     }
 
     .hero {
@@ -1506,4 +1756,306 @@ a {
     color:#cfcfcf;
     line-height:1.8;
     margin-bottom:35px;
+}
+
+/* =========================
+   v1.1.2 Hero Renewal
+========================= */
+
+.hero-v112 {
+    grid-template-columns: 1.25fr 0.9fr;
+}
+
+.hero-name {
+    font-size: clamp(58px, 9vw, 118px);
+    line-height: 0.92;
+    letter-spacing: -6px;
+    font-weight: 900;
+}
+
+.hero-name span {
+    background: linear-gradient(135deg, var(--blue), var(--cyan), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-role {
+    display: inline-flex;
+    width: fit-content;
+    margin-top: 22px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(111, 146, 255, 0.14);
+    border: 1px solid rgba(111, 146, 255, 0.28);
+    color: #dbe4ff;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.hero-logo-card {
+    transform: scale(1.05);
+}
+
+.hero-v112 .hero-desc {
+    max-width: 680px;
+}
+
+.hero-v112 .btn {
+    padding: 15px 24px;
+}
+
+.hero-v112 .scroll-down {
+    animation: scrollFloat 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollFloat {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+@media (max-width: 700px) {
+    .hero-name {
+        font-size: clamp(50px, 16vw, 78px);
+        letter-spacing: -3px;
+    }
+
+    .hero-role {
+        font-size: 13px;
+    }
+}
+
+/* =========================
+   Animation Polish v1.1.2
+========================= */
+
+/* 전체 애니메이션 감도 통일 */
+:root {
+    --ease-out: cubic-bezier(.22, 1, .36, 1);
+    --ease-soft: cubic-bezier(.16, 1, .3, 1);
+}
+
+/* Reveal 애니메이션 부드럽게 */
+.reveal {
+    transition:
+        opacity 1s var(--ease-out),
+        transform 1s var(--ease-out),
+        filter 1s var(--ease-out);
+}
+
+.reveal.up {
+    transform: translateY(46px);
+}
+
+.reveal.left {
+    transform: translateX(-54px);
+}
+
+.reveal.right {
+    transform: translateX(54px);
+}
+
+.reveal.zoom {
+    transform: scale(.9);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+    filter: blur(0);
+}
+
+/* Hero 카드 부유 애니메이션 개선 */
+@keyframes cardFloat {
+    0%, 100% {
+        transform: translateY(0) rotateX(0deg) rotateY(0deg);
+    }
+
+    50% {
+        transform: translateY(-14px) rotateX(2deg) rotateY(-3deg);
+    }
+}
+
+/* 미니 카드 움직임 개선 */
+@keyframes miniFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Aurora 움직임 더 부드럽게 */
+@keyframes aurora {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+    }
+
+    50% {
+        transform: translate3d(28px, -34px, 0) scale(1.08) rotate(7deg);
+    }
+
+    100% {
+        transform: translate3d(42px, -46px, 0) scale(1.16) rotate(12deg);
+    }
+}
+
+/* Scroll Down 자연스럽게 */
+.hero-v112 .scroll-down {
+    animation: scrollFloat 2.2s var(--ease-soft) infinite;
+}
+
+@keyframes scrollFloat {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: .72;
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+        opacity: 1;
+    }
+}
+
+/* 마우스 휠 애니메이션 개선 */
+@keyframes wheel {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+}
+
+/* 로딩 로고 움직임 개선 */
+@keyframes loaderPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 46px rgba(111,146,255,.35);
+    }
+
+    100% {
+        transform: scale(1.08);
+        box-shadow: 0 0 80px rgba(111,146,255,.55);
+    }
+}
+
+/* 별 반짝임 개선 */
+@keyframes twinkle {
+    0%, 100% {
+        opacity: .18;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.9);
+    }
+}
+
+/* 버튼/카드 hover 부드럽게 */
+.btn,
+.glass-panel,
+.info-card,
+.interest-card,
+.personality-card,
+.quote-card,
+.dream-card,
+.plan-card,
+.timeline-content,
+.contact-card,
+.message-card,
+.project-card-full,
+.project-card-empty,
+.detail-panel,
+.portal-card,
+.skill-panel,
+.learning-card,
+.award-feature,
+.award-card {
+    transition-timing-function: var(--ease-out);
+}
+
+/* 사용자 접근성: 움직임 줄이기 설정 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* =========================
+   Icon System v1.1.2
+========================= */
+
+.nav a,
+.btn,
+.interest-card,
+.skill-panel,
+.award-card,
+.portal-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav a i,
+.nav a svg {
+    width: 17px;
+    height: 17px;
+    stroke-width: 2.2;
+}
+
+.btn i,
+.btn svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.3;
+}
+
+.interest-icon i,
+.interest-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke-width: 2.2;
+}
+
+.contact-card > i,
+.contact-card > svg {
+    width: 26px;
+    height: 26px;
+    margin-bottom: 16px;
+    color: var(--cyan);
+}
+
+.skill-panel > i,
+.skill-panel > svg,
+.award-card > i,
+.award-card > svg,
+.portal-card > i,
+.portal-card > svg {
+    width: 26px;
+    height: 26px;
+    margin-bottom: 14px;
+    color: var(--cyan);
+}
+
+.fa-brands,
+.fa-solid {
+    line-height: 1;
 }

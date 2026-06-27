@@ -61,12 +61,12 @@
     </a>
 
     <nav class="nav" id="nav">
-      <a class="magnetic" href="index.html#home">Home</a>
-      <a class="magnetic" href="journey.html">Journey</a>
-      <a class="magnetic" href="skills.html">Skills</a>
-      <a class="magnetic" href="awards.html">Awards</a>
-      <a class="magnetic" href="projects.html">Projects</a>
-      <a class="magnetic" href="contact.html">Contact</a>
+        <a class="magnetic" href="index.html#home"><i data-lucide="house"></i> Home</a>
+        <a class="magnetic" href="journey.html"><i data-lucide="map"></i> Journey</a>
+        <a class="magnetic" href="skills.html"><i data-lucide="hammer"></i> Skills</a>
+        <a class="magnetic" href="awards.html"><i data-lucide="trophy"></i> Awards</a>
+        <a class="magnetic" href="projects.html"><i data-lucide="folder-kanban"></i> Projects</a>
+        <a class="magnetic" href="contact.html"><i data-lucide="phone"></i> Contact</a>
     </nav>
 
     <button class="menu-btn magnetic" id="menuBtn" aria-label="메뉴 열기">☰</button>
@@ -74,39 +74,61 @@
 
 
   <main>
-    <section id="home" class="section hero">
+    <section id="home" class="section hero hero-v112">
       <div class="hero-text">
-        <p class="badge reveal zoom">Student Developer Portfolio</p>
-        <h1 class="reveal left">안녕하세요.<br />저는 <span>이동윤</span>입니다.</h1>
-        <p class="typing-line reveal left"><span id="typingText"></span><span class="cursor">|</span></p>
-        <p class="hero-desc reveal left">
-          게임 개발과 웹 개발을 배우며, 아이디어를 실제로 동작하는 서비스로 만드는 것을 좋아합니다.
-          작은 프로젝트부터 직접 만들고 고치며 성장하고 있습니다.
-        </p>
-        <div class="hero-buttons reveal left">
-          <a href="#about" class="btn primary magnetic">나에 대해 보기</a>
-          <a href="projects.html" class="btn magnetic">프로젝트 보기</a>
-        </div>
-        <div class="hero-stats reveal up">
-          <div class="tilt-card"><strong>16세</strong><span>중학교 3학년</span></div>
-          <div class="tilt-card"><strong>Goal</strong><span>한국디지털미디어고등학교</span></div>
-          <div class="tilt-card"><strong>Dream</strong><span>Developer</span></div>
-        </div>
+          <p class="badge reveal zoom">👋 Hello, I'm</p>
+
+          <h1 class="hero-name reveal left">
+              DONG-YOON<br>
+              <span>LEE</span>
+          </h1>
+
+          <p class="hero-role reveal left">Student Developer</p>
+
+          <p class="typing-line reveal left">
+              <span id="typingText"></span><span class="cursor">|</span>
+          </p>
+
+          <p class="hero-desc reveal left">
+              게임 개발과 웹 개발을 배우며, 아이디어를 실제로 동작하는 프로젝트로 만드는 개발자 지망생입니다.
+          </p>
+
+          <div class="hero-buttons reveal left">
+              <a href="#about" class="btn primary magnetic">
+                  Explore Portfolio <i data-lucide="arrow-right"></i>
+              </a>
+
+              <a href="https://github.com/dongyoonlee616-eng" target="_blank" class="btn magnetic">
+                  <i class="fa-brands fa-github"></i> GitHub
+              </a>
+          </div>
       </div>
 
       <div class="hero-visual reveal right">
-        <div class="orbit"></div>
-        <div class="floating-card main-card shine-card tilt-card">
-          <div class="profile-circle">DY</div>
-          <h2>Dong-Yoon Lee</h2>
-          <p>Developer Student</p>
-        </div>
-        <div class="mini-card card-top tilt-card"><span>현재 목표</span><strong>디미고 입학</strong></div>
-        <div class="mini-card card-bottom tilt-card"><span>관심 분야</span><strong>게임 · 웹 · C++</strong></div>
+          <div class="orbit"></div>
+
+          <div class="floating-card main-card shine-card tilt-card hero-logo-card">
+              <div class="profile-circle">DY</div>
+              <h2>Dong-Yoon Lee</h2>
+              <p>Student Developer</p>
+          </div>
+
+          <div class="mini-card card-top tilt-card">
+              <span>Goal</span>
+              <strong>디미고 입학</strong>
+          </div>
+
+          <div class="mini-card card-bottom tilt-card">
+              <span>Focus</span>
+              <strong>Game · Web · C++</strong>
+          </div>
       </div>
 
-      <a href="#about" class="scroll-down magnetic"><span>Scroll</span><div class="mouse"><div></div></div></a>
-    </section>
+      <a href="#about" class="scroll-down magnetic">
+          <span>Scroll Down</span>
+          <div class="mouse"><div></div></div>
+      </a>
+  </section>
 
     <section id="about" class="section about-section">
       <div class="section-kicker reveal left">Chapter 01</div>
@@ -154,6 +176,9 @@
   </main>
 
   <footer class="footer"><p>© 2026 Dong-Yoon Lee. All rights reserved.</p></footer>
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://kit.fontawesome.com/2d3c4f5b3f.js" crossorigin="anonymous"></script>
 
   <script src="assets/js/main.js"></script>
 </body>

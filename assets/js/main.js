@@ -64,10 +64,10 @@ if (menuBtn && nav) {
 const typingText = document.getElementById("typingText");
 
 const words = [
-    "Game Developer를 꿈꿉니다.",
-    "Web Project를 직접 만듭니다.",
     "아이디어를 코드로 구현합니다.",
-    "계속 배우고 성장하는 중입니다."
+    "끊임없이 배우고 성장합니다.",
+    "저만의 프로젝트를 만들어갑니다.",
+    "개발자를 향해 나아가고 있습니다.",
 ];
 
 let wordIndex = 0;
@@ -224,3 +224,7 @@ document.querySelectorAll(".magnetic").forEach((item) => {
         item.style.transform = "";
     });
 });
+
+if (window.lucide) {
+    lucide.createIcons();
+}
