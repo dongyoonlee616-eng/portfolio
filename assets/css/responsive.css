@@ -12,7 +12,7 @@
     }
 
     .project-thumb {
-        min-height:220px;
+        min-height:240px;
     }
 
     .nav a {
@@ -59,6 +59,19 @@
 }
 
 @media(max-width:760px) {
+    .project-card-full {
+        padding: 24px;
+    }
+
+    .project-card-empty {
+        min-height: 230px;
+        padding: 28px;
+    }
+
+    .project-info h3 {
+        font-size: 34px;
+    }
+
     .cursor-dot,.cursor-ring {
         display:none;
     }

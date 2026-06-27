@@ -241,33 +241,65 @@
     box-shadow:0 0 46px rgba(111,146,255,.15);
 }
 
+/* =========================
+   Contact Page
+========================= */
+
 .contact-grid {
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:22px;
-    margin-top:48px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    max-width: 960px;
+    margin-top: 48px;
 }
 
 .contact-card {
-    display:block;
-    padding:32px;
-    min-height:230px;
-    transition:.25s;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+    gap: 24px;
+
+    padding: 30px 34px;
+    min-height: 150px;
 }
 
 .contact-card span {
-    color:var(--blue);
-    font-weight:900;
+    color: var(--blue);
+    font-weight: 900;
+    font-size: 15px;
 }
 
 .contact-card h3 {
-    font-size:26px;
-    margin:18px 0 10px;
-    letter-spacing:-1px;
+    font-size: clamp(22px, 3vw, 32px);
+    margin: 0 0 8px;
+    letter-spacing: -1px;
+    word-break: break-all;
 }
 
 .contact-card p {
-    color:var(--muted);
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* Contact 카드 안의 텍스트 영역 정리 */
+.contact-card span,
+.contact-card h3,
+.contact-card p {
+    position: relative;
+    z-index: 2;
+}
+
+/* 모바일 */
+@media (max-width: 760px) {
+    .contact-card {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 28px;
+    }
+
+    .contact-card h3 {
+        font-size: 22px;
+    }
 }
 
 /* =========================
@@ -276,22 +308,25 @@
 
 .project-library {
     display: grid;
-    grid-template-columns: 1.6fr .8fr .8fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
     align-items: stretch;
 }
 
+/* 대표 프로젝트 카드 */
 .project-card-full {
+    grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 28px;
-    padding: 26px;
-    min-height: 430px;
+    grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
+    gap: 32px;
+    padding: 30px;
+    min-height: 380px;
+    align-items: stretch;
 }
 
 .project-thumb {
-    min-height: 100%;
-    border-radius: 22px;
+    min-height: 320px;
+    border-radius: 24px;
     background: linear-gradient(135deg, var(--blue), var(--purple));
     display: grid;
     place-items: center;
@@ -299,7 +334,7 @@
 }
 
 .project-thumb span {
-    font-size: 64px;
+    font-size: 72px;
     font-weight: 900;
 }
 
@@ -307,13 +342,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-width: 0;
 }
 
 .project-top {
     display: flex;
-    justify-content: space-between;
     gap: 12px;
-    margin-bottom: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
 }
 
 .status,
@@ -334,14 +370,16 @@
 }
 
 .project-info h3 {
-    font-size: clamp(28px, 3vw, 38px);
-    letter-spacing: -1.5px;
-    margin-bottom: 12px;
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
 }
 
 .project-info p {
+    max-width: 620px;
     color: var(--muted);
-    margin-bottom: 18px;
+    margin-bottom: 20px;
     line-height: 1.75;
 }
 
@@ -349,7 +387,7 @@
     display: flex;
     gap: 9px;
     flex-wrap: wrap;
-    margin-bottom: 18px;
+    margin-bottom: 22px;
 }
 
 .tech-tags span {
@@ -362,7 +400,7 @@
 }
 
 .progress-box {
-    margin: 18px 0 22px;
+    margin: 18px 0 24px;
 }
 
 .progress-text {
@@ -387,9 +425,10 @@
     background: linear-gradient(90deg, var(--blue), var(--cyan));
 }
 
+/* Coming Soon 카드 */
 .project-card-empty {
-    min-height: 430px;
-    padding: 32px;
+    min-height: 270px;
+    padding: 34px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -397,51 +436,152 @@
 }
 
 .project-card-empty span {
-    font-size: 58px;
+    font-size: 56px;
     color: var(--blue);
     font-weight: 900;
 }
 
 .project-card-empty h3 {
-    font-size: 26px;
+    font-size: 28px;
     margin: 16px 0 8px;
 }
 
 .project-card-empty p {
+    max-width: 300px;
+    margin: 0 auto;
     color: var(--muted);
     line-height: 1.7;
 }
 
+/* =========================
+   Project Detail Page
+========================= */
+
+.project-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
 .detail-panel {
-    padding:34px;
+    padding: 34px;
+    min-height: 220px;
 }
 
 .detail-panel.wide {
-    grid-column:1/-1;
+    grid-column: 1 / -1;
 }
 
 .detail-panel span {
-    color:var(--blue);
-    font-weight:900;
+    display: inline-block;
+    color: var(--blue);
+    font-weight: 900;
+    margin-bottom: 12px;
 }
 
 .detail-panel h2 {
-    font-size:32px;
-    margin:12px 0 14px;
-    letter-spacing:-1px;
+    font-size: 32px;
+    margin-bottom: 18px;
+    letter-spacing: -1px;
 }
 
-.detail-panel p,.feature-list {
-    color:var(--muted);
-    font-size:17px;
+.detail-panel p,
+.feature-list {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.8;
 }
 
 .feature-list {
-    padding-left:20px;
+    padding-left: 20px;
 }
 
 .feature-list li {
-    margin-bottom:8px;
+    margin-bottom: 10px;
+}
+
+.detail-panel + .detail-panel {
+    margin-top: 24px;
+}
+
+/* =========================
+   Project Detail Extra
+========================= */
+
+.project-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.project-summary-grid div,
+.tech-detail-list div,
+.version-timeline div,
+.problem-box {
+    padding: 18px;
+    border-radius: 18px;
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.project-summary-grid strong,
+.tech-detail-list strong,
+.version-timeline strong {
+    display: block;
+    color: var(--blue);
+    font-weight: 900;
+    margin-bottom: 8px;
+}
+
+.project-summary-grid p,
+.tech-detail-list p,
+.version-timeline p {
+    color: var(--muted);
+}
+
+.tech-detail-list {
+    display: grid;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.version-timeline {
+    display: grid;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.problem-box {
+    margin-top: 18px;
+}
+
+.problem-box h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #e1e8ff;
+}
+
+.problem-box h3:not(:first-child) {
+    margin-top: 22px;
+}
+
+.problem-box p {
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+@media (max-width: 900px) {
+    .project-summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .project-summary-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .skills-layout {
