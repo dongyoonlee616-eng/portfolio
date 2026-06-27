@@ -42,6 +42,18 @@
 
 ---
 
+## v1.3.0
+
+### 🌐 Website Features
+
+- [ ] 영어(English) 지원
+- [ ] GitHub API 연동
+- [ ] GitHub Contribution 그래프 표시
+- [ ] 사이트 성능 최적화
+- [ ] 접근성(Accessibility) 개선
+
+---
+
 ## v2.0.0
 
 ### 🎮 Interactive Portfolio
