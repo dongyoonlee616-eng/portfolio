@@ -1,0 +1,532 @@
+/* =========================
+   Final Polish v1.0.3
+   Colors / Spacing / Tokens
+========================= */
+
+/* =========================
+   Design Tokens
+========================= */
+
+:root {
+    /* Brand Colors */
+    --blue: #6F92FF;
+    --blue-deep: #5A7DFF;
+    --cyan: #3DDCFF;
+    --purple: #8B6CFF;
+
+    /* Background */
+    --bg: #070B18;
+    --bg-soft: #0B1022;
+    --panel: rgba(255, 255, 255, .075);
+    --panel-strong: rgba(255, 255, 255, .115);
+
+    /* Text */
+    --text: #F4F7FF;
+    --text-soft: #DDE6FF;
+    --muted: #AAB6D8;
+    --muted-strong: #C3CEF0;
+
+    /* Border */
+    --border: rgba(255, 255, 255, .12);
+    --border-strong: rgba(111, 146, 255, .38);
+
+    /* Radius */
+    --radius-sm: 14px;
+    --radius-md: 18px;
+    --radius-lg: 26px;
+    --radius-xl: 34px;
+
+    /* Shadows */
+    --shadow-soft: 0 12px 38px rgba(0, 0, 0, .22);
+    --shadow-card: 0 20px 70px rgba(0, 0, 0, .26);
+    --shadow-card-hover: 0 28px 90px rgba(0, 0, 0, .34);
+    --shadow-glow: 0 0 60px rgba(111, 146, 255, .22);
+
+    /* Spacing */
+    --section-y: 120px;
+    --section-y-compact: 90px;
+    --page-top: 150px;
+
+    --gap-sm: 14px;
+    --gap-md: 22px;
+    --gap-lg: 32px;
+    --gap-xl: 48px;
+
+    /* Motion */
+    --ease-out: cubic-bezier(.22, 1, .36, 1);
+    --ease-soft: cubic-bezier(.16, 1, .3, 1);
+}
+
+/* =========================
+   Base Color Polish
+========================= */
+
+body {
+    color: var(--text);
+    background:
+        radial-gradient(circle at 15% 12%, rgba(111, 146, 255, .16), transparent 34%),
+        radial-gradient(circle at 85% 8%, rgba(139, 108, 255, .13), transparent 32%),
+        radial-gradient(circle at 50% 95%, rgba(61, 220, 255, .09), transparent 36%),
+        var(--bg);
+}
+
+p {
+    color: var(--muted);
+}
+
+::selection {
+    background: rgba(111, 146, 255, .35);
+    color: #fff;
+}
+
+/* =========================
+   Global Spacing Polish
+========================= */
+
+.section {
+    padding-top: var(--section-y);
+    padding-bottom: var(--section-y);
+}
+
+.compact-section {
+    padding-top: var(--section-y-compact);
+    padding-bottom: var(--section-y-compact);
+}
+
+.page-hero,
+.sub-hero {
+    padding-top: var(--page-top);
+}
+
+.section-title {
+    margin-bottom: var(--gap-xl);
+}
+
+.section-title p,
+.section-kicker {
+    color: var(--cyan);
+    letter-spacing: 2px;
+}
+
+.section-title h2 {
+    letter-spacing: -2px;
+}
+
+/* =========================
+   Header / Nav Polish
+========================= */
+
+.header {
+    background: rgba(7, 11, 24, .68);
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+}
+
+.logo {
+    color: var(--text);
+}
+
+.nav a {
+    color: var(--muted-strong);
+}
+
+.nav a:hover,
+.nav a.active {
+    color: #fff;
+}
+
+/* =========================
+   Hero Polish
+========================= */
+
+.hero {
+    min-height: 100vh;
+    gap: clamp(36px, 6vw, 80px);
+}
+
+.badge {
+    color: var(--text-soft);
+    border-color: rgba(111, 146, 255, .28);
+    background: rgba(111, 146, 255, .12);
+}
+
+.hero-name {
+    color: var(--text);
+    text-shadow: 0 0 50px rgba(111, 146, 255, .12);
+}
+
+.hero-desc {
+    color: var(--muted-strong);
+    line-height: 1.85;
+}
+
+.typing-line {
+    color: var(--text-soft);
+}
+
+.cursor {
+    color: var(--cyan);
+}
+
+.floating-card,
+.main-card,
+.mini-card {
+    border-color: var(--border);
+    box-shadow: var(--shadow-card);
+}
+
+.profile-circle {
+    filter: drop-shadow(0 0 44px rgba(111, 146, 255, .42));
+}
+
+/* =========================
+   Button Polish
+========================= */
+
+.btn {
+    min-height: 52px;
+    border-color: rgba(255, 255, 255, .14);
+    background: rgba(255, 255, 255, .055);
+    box-shadow: 0 10px 34px rgba(0, 0, 0, .16);
+}
+
+.btn.primary {
+    background: linear-gradient(
+        135deg,
+        var(--blue-deep),
+        var(--blue),
+        var(--purple)
+    );
+}
+
+.btn:hover {
+    border-color: var(--border-strong);
+}
+
+.btn :is(i, svg) {
+    opacity: .95;
+}
+
+/* =========================
+   Card Polish
+========================= */
+
+:is(
+    .glass-panel,
+    .info-card,
+    .interest-card,
+    .personality-card,
+    .quote-card,
+    .dream-card,
+    .plan-card,
+    .timeline-content,
+    .contact-card,
+    .message-card,
+    .project-card-full,
+    .project-card-empty,
+    .detail-panel,
+    .portal-card,
+    .skill-panel,
+    .learning-card,
+    .award-feature,
+    .award-card,
+    .project-wide-card
+) {
+    border-color: var(--border);
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, .105),
+        rgba(255, 255, 255, .04)
+    );
+}
+
+:is(
+    .glass-panel,
+    .info-card,
+    .interest-card,
+    .personality-card,
+    .quote-card,
+    .dream-card,
+    .plan-card,
+    .timeline-content,
+    .contact-card,
+    .message-card,
+    .project-card-full,
+    .project-card-empty,
+    .detail-panel,
+    .portal-card,
+    .skill-panel,
+    .learning-card,
+    .award-feature,
+    .award-card,
+    .project-wide-card
+):hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-card-hover), var(--shadow-glow);
+}
+
+:is(
+    .glass-panel,
+    .info-card,
+    .interest-card,
+    .personality-card,
+    .quote-card,
+    .dream-card,
+    .plan-card,
+    .timeline-content,
+    .contact-card,
+    .message-card,
+    .project-card-full,
+    .project-card-empty,
+    .detail-panel,
+    .portal-card,
+    .skill-panel,
+    .learning-card,
+    .award-feature,
+    .award-card
+) > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================
+   Home Portal Polish
+========================= */
+
+.portal-grid {
+    gap: var(--gap-md);
+}
+
+.portal-card {
+    padding: 32px;
+}
+
+.portal-card span {
+    color: var(--cyan);
+}
+
+.portal-card h3 {
+    color: var(--text);
+    letter-spacing: -1px;
+}
+
+.portal-card p {
+    line-height: 1.75;
+}
+
+.project-wide-card {
+    margin-top: var(--gap-md);
+    padding: 34px 36px;
+}
+
+/* =========================
+   Projects Page Polish
+========================= */
+
+.project-library {
+    gap: var(--gap-md);
+}
+
+.project-card-full {
+    gap: var(--gap-lg);
+}
+
+.project-thumb {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .18),
+        0 0 56px rgba(111, 146, 255, .24);
+}
+
+.project-info h3 {
+    color: var(--text);
+}
+
+.project-info p {
+    color: var(--muted-strong);
+}
+
+.status,
+.project-date {
+    color: var(--text-soft);
+}
+
+.tech-tags span,
+.tag {
+    color: var(--text-soft);
+}
+
+/* =========================
+   Project Detail Polish
+========================= */
+
+.project-detail-grid {
+    gap: var(--gap-md);
+}
+
+.detail-panel {
+    padding: 34px;
+}
+
+.detail-panel span {
+    color: var(--cyan);
+}
+
+.detail-panel h2 {
+    color: var(--text);
+    letter-spacing: -1px;
+}
+
+.detail-panel p {
+    line-height: 1.85;
+}
+
+.project-summary-grid {
+    gap: var(--gap-sm);
+}
+
+.project-summary-grid div,
+.tech-detail-list div,
+.version-timeline div,
+.problem-box {
+    border-color: rgba(255, 255, 255, .09);
+    background: rgba(255, 255, 255, .045);
+}
+
+/* =========================
+   Contact Polish
+========================= */
+
+.contact-grid {
+    gap: 20px;
+}
+
+.contact-card {
+    border-radius: var(--radius-lg);
+}
+
+.contact-card span {
+    color: var(--cyan);
+}
+
+.contact-card h3 {
+    color: var(--text);
+}
+
+.contact-card p {
+    color: var(--muted-strong);
+}
+
+/* =========================
+   Skills / Awards Polish
+========================= */
+
+.skill-panel,
+.learning-card,
+.award-feature,
+.award-card {
+    padding: 30px;
+}
+
+.progress-bar {
+    background: rgba(255, 255, 255, .09);
+}
+
+.progress-bar span {
+    background: linear-gradient(
+        90deg,
+        var(--blue-deep),
+        var(--blue),
+        var(--cyan)
+    );
+}
+
+/* =========================
+   Footer Polish
+========================= */
+
+.footer {
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    color: var(--muted);
+}
+
+/* =========================
+   Responsive Polish
+========================= */
+
+@media (max-width: 900px) {
+    :root {
+        --section-y: 95px;
+        --section-y-compact: 75px;
+        --page-top: 130px;
+        --gap-xl: 38px;
+    }
+
+    .section-title {
+        margin-bottom: 38px;
+    }
+
+    .detail-panel,
+    .portal-card,
+    .project-wide-card {
+        padding: 28px;
+    }
+}
+
+@media (max-width: 700px) {
+    :root {
+        --section-y: 80px;
+        --section-y-compact: 64px;
+        --page-top: 118px;
+    }
+
+    .hero {
+        gap: 34px;
+    }
+
+    .hero-desc {
+        line-height: 1.75;
+    }
+
+    .btn {
+        width: 100%;
+        min-height: 50px;
+    }
+
+    .hero-buttons {
+        width: 100%;
+    }
+
+    .project-wide-card {
+        gap: 14px;
+    }
+
+    .project-wide-card h3 {
+        font-size: 26px;
+    }
+
+    .contact-card {
+        padding: 26px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title h2 {
+        font-size: clamp(32px, 10vw, 44px);
+    }
+
+    .detail-panel,
+    .portal-card,
+    .project-wide-card,
+    .skill-panel,
+    .learning-card,
+    .award-feature,
+    .award-card {
+        padding: 24px;
+    }
+
+    .tech-tags span,
+    .tag {
+        font-size: 12px;
+    }
+}
