@@ -1,0 +1,194 @@
+/* =========================
+   Responsive
+========================= */
+
+@media(max-width:1150px) {
+    .project-library {
+        grid-template-columns:1fr;
+    }
+
+    .project-card-full {
+        grid-template-columns:1fr;
+    }
+
+    .project-thumb {
+        min-height:220px;
+    }
+
+    .nav a {
+        font-size:12px;
+        padding:9px 8px;
+    }
+}
+
+@media(max-width:1050px) {
+    .interest-grid {
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .profile-grid,.portal-grid,.learning-grid,.award-grid {
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .contact-grid {
+        grid-template-columns:1fr;
+    }
+
+    .project-detail-grid,.skills-layout {
+        grid-template-columns:1fr;
+    }
+
+    .detail-panel.wide {
+        grid-column:auto;
+    }
+}
+
+@media(max-width:950px) {
+    .hero,.about-layout {
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+    .hero-visual {
+        min-height:380px;
+    }
+
+    .personality-wrap,.next-plans {
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:760px) {
+    .cursor-dot,.cursor-ring {
+        display:none;
+    }
+
+    .header {
+        top:10px;
+        width:calc(100% - 20px);
+        padding:0 14px;
+    }
+
+    .logo {
+        font-size:15px;
+    }
+
+    .menu-btn {
+        display:block;
+    }
+
+    .nav {
+        position:fixed;
+        top:82px;
+        right:-110%;
+        width:240px;
+        height:calc(100vh - 92px);
+        padding:24px;
+        flex-direction:column;
+        align-items:stretch;
+        background:rgba(9,13,27,.96);
+        border:1px solid rgba(255,255,255,.1);
+        border-radius:22px;
+        transition:.25s;
+    }
+
+    .nav.active {
+        right:10px;
+    }
+
+    .section{
+        padding:90px 24px;
+    }
+
+    .hero {
+        padding-bottom:122px;
+    }
+
+    .hero h1,.page-hero h1 {
+        letter-spacing:-2px;
+    }
+
+    .hero-stats,.profile-grid,.interest-grid,.project-stats,.portal-grid,.learning-grid,.award-grid {
+        grid-template-columns:1fr;
+    }
+
+    .hero-visual {
+        min-height:360px;
+        flex-direction:column;
+    }
+
+    .orbit {
+        width:320px;
+        height:320px;
+    }
+
+    .mini-card {
+        position:static;
+        margin-top:14px;
+        width:100%;
+    }
+
+    .scroll-down {
+        bottom:20px;
+    }
+
+    .about-text,.quote-card,.dream-card,.contact-card,.detail-panel,.award-feature {
+        padding:28px;
+    }
+
+    .timeline::before {
+        left:12px;
+    }
+
+    .timeline-item {
+        grid-template-columns:1fr;
+        gap:12px;
+        padding-left:40px;
+    }
+
+    .timeline-item::before {
+        left:4px;
+    }
+
+    .timeline-year {
+        text-align:left;
+    }
+
+    .journey-cta,.message-card {
+        padding:30px 20px;
+    }
+
+    .award-feature {
+        grid-template-columns:1fr;
+    }
+
+    .award-medal {
+        width:120px;
+        height:120px;
+        font-size:54px;
+    }
+}
+
+@media (max-width: 700px) {
+    .hero-name {
+        font-size: clamp(50px, 16vw, 78px);
+        letter-spacing: -3px;
+    }
+
+    .hero-role {
+        font-size: 13px;
+    }
+}
+
+/* 사용자 접근성: 움직임 줄이기 설정 */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}

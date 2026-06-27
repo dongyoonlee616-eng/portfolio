@@ -1,0 +1,306 @@
+/* =========================
+   Hero Section
+========================= */
+
+.hero {
+    position:relative;
+    display:grid;
+    grid-template-columns:1.35fr .9fr;
+    align-items:center;
+    gap:60px;
+}
+
+.badge {
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    margin-bottom:18px;
+    padding:8px 14px;
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:999px;
+    color:#d7e0ff;
+    background:rgba(111,146,255,.1);
+    box-shadow:0 0 42px rgba(111,146,255,.18);
+    font-weight:800;
+    font-size:14px;
+}
+
+.badge::before {
+    content:"";
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 18px var(--cyan);
+}
+
+.hero h1,.page-hero h1 {
+    font-size:clamp(46px,7vw,94px);
+    line-height:1.04;
+    letter-spacing:-4px;
+}
+
+.hero h1 span {
+    background:linear-gradient(135deg,var(--blue),var(--cyan));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 36px rgba(111,146,255,.15);
+}
+
+.typing-line {
+    min-height:38px;
+    margin-top:22px;
+    color:#e1e8ff;
+    font-size:clamp(20px,3vw,30px);
+    font-weight:800;
+}
+
+.cursor {
+    color:var(--blue);
+    animation:blink .8s infinite;
+}
+
+.hero-desc,.page-desc {
+    max-width:760px;
+    margin-top:22px;
+    color:var(--muted);
+    font-size:18px;
+}
+
+.hero-buttons {
+    display:flex;
+    gap:14px;
+    margin-top:34px;
+    flex-wrap:wrap;
+}
+
+.hero-stats,.project-stats {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    max-width:720px;
+    margin-top:36px;
+}
+
+.hero-stats div,.project-stats div {
+    padding:17px;
+    border-radius:20px;
+    background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.035));
+    border:1px solid rgba(255,255,255,.12);
+    -webkit-backdrop-filter:blur(14px);
+    backdrop-filter:blur(14px);
+}
+
+.hero-stats strong,.project-stats strong {
+    display:block;
+    font-size:24px;
+}
+
+.hero-stats span,.project-stats span {
+    display:block;
+    margin-top:4px;
+    color:var(--soft);
+    font-size:13px;
+}
+
+.hero-visual {
+    position:relative;
+    min-height:460px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    perspective:1000px;
+}
+
+.orbit {
+    position:absolute;
+    width:420px;
+    height:420px;
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:50%;
+    animation:spin 18s linear infinite;
+}
+
+.orbit::before {
+    content:"";
+    position:absolute;
+    top:38px;
+    left:70px;
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 28px var(--cyan);
+}
+
+.floating-card,.mini-card {
+    border:1px solid rgba(255,255,255,.15);
+    background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.04));
+    -webkit-backdrop-filter:blur(18px);
+    backdrop-filter:blur(18px);
+    box-shadow:var(--shadow);
+}
+
+.main-card {
+    position:relative;
+    width:min(340px,90vw);
+    padding:38px 30px;
+    border-radius:36px;
+    text-align:center;
+    animation:cardFloat 4s ease-in-out infinite;
+    transform-style:preserve-3d;
+    overflow:hidden;
+}
+
+.shine-card::before {
+    content:"";
+    position:absolute;
+    top:-120%;
+    left:-80%;
+    width:80%;
+    height:260%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+    transform:rotate(25deg);
+    animation:cardShine 5s ease-in-out infinite;
+}
+
+.profile-circle {
+    width:164px;
+    height:164px;
+    margin:0 auto 24px;
+    border-radius:50%;
+    background:radial-gradient(circle at 30% 24%,rgba(255,255,255,.55),transparent 24%),linear-gradient(135deg,var(--blue),var(--purple));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:48px;
+    font-weight:900;
+    box-shadow:0 0 60px rgba(111,146,255,.48);
+}
+
+.main-card h2 {
+    font-size:30px;
+}
+
+.main-card p {
+    color:var(--muted);
+}
+
+.mini-card {
+    position:absolute;
+    padding:17px 20px;
+    border-radius:21px;
+    animation:miniFloat 3.4s ease-in-out infinite;
+}
+
+.mini-card span {
+    display:block;
+    margin-bottom:4px;
+    color:var(--soft);
+    font-size:13px;
+}
+
+.mini-card strong {
+    font-size:17px;
+}
+
+.card-top {
+    top:58px;
+    right:0;
+}
+
+.card-bottom {
+    left:0;
+    bottom:70px;
+    animation-delay:.8s;
+}
+
+.scroll-down {
+    position:absolute;
+    left:50%;
+    bottom:32px;
+    transform:translateX(-50%);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--soft);
+    font-size:13px;
+    font-weight:800;
+}
+
+.mouse {
+    width:24px;
+    height:38px;
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:999px;
+    display:flex;
+    justify-content:center;
+    padding-top:7px;
+}
+
+.mouse div {
+    width:4px;
+    height:7px;
+    border-radius:999px;
+    background:white;
+    animation:wheel 1.3s infinite;
+}
+
+/* =========================
+   Hero Renewal
+========================= */
+
+.hero-v112 {
+    grid-template-columns: 1.25fr 0.9fr;
+}
+
+.hero-name {
+    font-size: clamp(58px, 9vw, 118px);
+    line-height: 0.92;
+    letter-spacing: -6px;
+    font-weight: 900;
+}
+
+.hero-name span {
+    background: linear-gradient(135deg, var(--blue), var(--cyan), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-role {
+    display: inline-flex;
+    width: fit-content;
+    margin-top: 22px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(111, 146, 255, 0.14);
+    border: 1px solid rgba(111, 146, 255, 0.28);
+    color: #dbe4ff;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.hero-logo-card {
+    transform: scale(1.05);
+}
+
+.hero-v112 .hero-desc {
+    max-width: 680px;
+}
+
+.hero-v112 .btn {
+    padding: 15px 24px;
+}
+
+.hero-v112 .scroll-down {
+    animation: scrollFloat 1.8s ease-in-out infinite;
+}
+
+/* Scroll Down 자연스럽게 */
+
+.hero-v112 .scroll-down {
+    animation: scrollFloat 2.2s var(--ease-soft) infinite;
+}

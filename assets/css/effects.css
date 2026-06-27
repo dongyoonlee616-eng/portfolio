@@ -1,0 +1,165 @@
+/* =========================
+   Loader / Cursor / Background Effects
+========================= */
+
+.loader {
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    background:radial-gradient(circle at 50% 35%,rgba(111,146,255,.28),transparent 28%),#040711;
+    transition:.7s ease;
+}
+
+.loader.hide {
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.loader-logo {
+    width:86px;
+    height:86px;
+    display:grid;
+    place-items:center;
+    border-radius:28px;
+    background:linear-gradient(135deg,var(--blue),var(--purple));
+    font-size:30px;
+    font-weight:900;
+    box-shadow:0 0 70px rgba(111,146,255,.45);
+    animation:loaderPulse 1.3s infinite alternate;
+}
+
+.loader p {
+    color:#dbe4ff;
+    font-weight:900;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-size:13px;
+}
+
+.loader-bar {
+    width:230px;
+    height:6px;
+    border-radius:99px;
+    overflow:hidden;
+    background:rgba(255,255,255,.12);
+}
+
+.loader-bar span {
+    display:block;
+    height:100%;
+    width:100%;
+    transform:translateX(-100%);
+    background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple));
+    animation:loadingBar 1.25s ease forwards;
+}
+
+.cursor-dot,.cursor-ring {
+    position:fixed;
+    left:0;
+    top:0;
+    pointer-events:none;
+    z-index:9998;
+    transform:translate(-50%,-50%);
+}
+
+.cursor-dot {
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#fff;
+}
+
+.cursor-ring {
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.55);
+    transition:width .18s,height .18s,border-color .18s,background .18s;
+}
+
+.cursor-ring.hover {
+    width:62px;
+    height:62px;
+    border-color:rgba(111,146,255,.8);
+    background:rgba(111,146,255,.1);
+}
+
+.background {
+    position:fixed;
+    inset:0;
+    z-index:-10;
+    overflow:hidden;
+    background:radial-gradient(circle at 20% 15%,rgba(111,146,255,.22),transparent 24%),radial-gradient(circle at 84% 8%,rgba(155,92,255,.20),transparent 27%),radial-gradient(circle at 50% 82%,rgba(61,220,255,.12),transparent 30%),#040711;
+}
+
+.noise {
+    position:absolute;
+    inset:0;
+    opacity:.07;
+    background-image:linear-gradient(45deg,rgba(255,255,255,.08) 25%,transparent 25%),linear-gradient(-45deg,rgba(255,255,255,.08) 25%,transparent 25%);
+    background-size:4px 4px;
+}
+
+.aurora {
+    position:absolute;
+    border-radius:50%;
+    filter:blur(75px);
+    opacity:.5;
+    animation:aurora 11s ease-in-out infinite alternate;
+}
+
+.aurora-1 {
+    width:420px;
+    height:420px;
+    background:var(--blue);
+    top:5%;
+    left:5%;
+}
+
+.aurora-2 {
+    width:350px;
+    height:350px;
+    background:var(--purple);
+    bottom:8%;
+    right:7%;
+    animation-delay:1.2s;
+}
+
+.aurora-3 {
+    width:260px;
+    height:260px;
+    background:var(--cyan);
+    top:48%;
+    right:36%;
+    opacity:.25;
+    animation-delay:2s;
+}
+
+.grid-bg {
+    position:absolute;
+    inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+    background-size:76px 76px;
+    -webkit-mask-image:linear-gradient(to bottom,black,transparent 86%);
+    mask-image:linear-gradient(to bottom,black,transparent 86%);
+}
+
+.stars {
+    position:absolute;
+    inset:0;
+}
+
+.star {
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:rgba(255,255,255,.92);
+    border-radius:50%;
+    animation:twinkle 2.8s infinite ease-in-out;
+}

@@ -1,0 +1,32 @@
+/* =========================
+   Icon System
+========================= */
+
+.interest-icon {
+    width:54px;
+    height:54px;
+    display:grid;
+    place-items:center;
+    margin-bottom:18px;
+    border-radius:18px;
+    background:rgba(111,146,255,.14);
+    border:1px solid rgba(255,255,255,.12);
+    font-size:29px;
+}
+
+.interest-icon :is(i, svg) {
+    width: 28px;
+    height: 28px;
+    stroke-width: 2.2;
+}
+
+:is(.contact-card, .skill-panel, .award-card, .portal-card) > :is(i, svg) {
+    width: 26px;
+    height: 26px;
+    margin-bottom: 14px;
+    color: var(--cyan);
+}
+
+:is(.fa-brands, .fa-solid) {
+    line-height: 1;
+}
