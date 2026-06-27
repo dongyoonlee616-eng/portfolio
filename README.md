@@ -27,5 +27,11 @@ https://dongyoonlee616-eng.github.io/portfolio/
 - Contact
 - 404 Page
 
-## Changelog
-프로젝트의 패치노트는 [CHANGELOG.md](CHANGELOG.md)를 참고해주세요.
+---
+
+# 📚 Documentation
+
+| Document | Description |
+|----------|-------------|
+| 📜 [CHANGELOG.md](CHANGELOG.md) | 프로젝트의 버전별 업데이트 내역 |
+| 📝 [TODO.md](TODO.md) | 앞으로 개발할 기능 및 계획 |
