@@ -1,0 +1,111 @@
+name: Discord Push Notify
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  discord:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Discord Embed
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import subprocess
+
+          event_path = os.environ["GITHUB_EVENT_PATH"]
+
+          with open(event_path, "r", encoding="utf-8") as f:
+              event = json.load(f)
+
+          repo = event["repository"]["full_name"]
+          repo_url = event["repository"]["html_url"]
+          branch = event["ref"].replace("refs/heads/", "")
+          pusher = event.get("pusher", {}).get("name", "unknown")
+          compare_url = event.get("compare", repo_url)
+
+          commits = event.get("commits", [])
+          commit_count = len(commits)
+
+          head_commit = event.get("head_commit") or {}
+          commit_message = head_commit.get("message", "No commit message")
+          commit_url = head_commit.get("url", compare_url)
+          commit_id = head_commit.get("id", "")[:7]
+          author = head_commit.get("author", {}).get("name", pusher)
+
+          added = set()
+          modified = set()
+          removed = set()
+
+          for commit in commits:
+              added.update(commit.get("added", []))
+              modified.update(commit.get("modified", []))
+              removed.update(commit.get("removed", []))
+
+          if len(commit_message) > 900:
+              commit_message = commit_message[:900] + "..."
+
+          payload = {
+              "username": "Portfolio Update",
+              "embeds": [
+                  {
+                      "title": "🚀 Portfolio Push 완료",
+                      "url": compare_url,
+                      "description": f"**{repo}** 저장소에 새로운 코드가 올라왔습니다.",
+                      "color": 7312127,
+                      "fields": [
+                          {
+                              "name": "브랜치",
+                              "value": f"`{branch}`",
+                              "inline": True
+                          },
+                          {
+                              "name": "커밋 수",
+                              "value": f"`{commit_count}`개",
+                              "inline": True
+                          },
+                          {
+                              "name": "작성자",
+                              "value": f"`{author}`",
+                              "inline": True
+                          },
+                          {
+                              "name": "최근 커밋",
+                              "value": f"[`{commit_id}`]({commit_url}) {commit_message}",
+                              "inline": False
+                          },
+                          {
+                              "name": "변경 파일",
+                              "value": f"🟢 추가 `{len(added)}`개\n🟡 수정 `{len(modified)}`개\n🔴 삭제 `{len(removed)}`개",
+                              "inline": True
+                          },
+                          {
+                              "name": "링크",
+                              "value": f"[변경 내용 보기]({compare_url})\n[저장소 열기]({repo_url})",
+                              "inline": True
+                          }
+                      ],
+                      "footer": {
+                          "text": "Dong-Yoon Lee Portfolio"
+                      }
+                  }
+              ]
+          }
+
+          with open("payload.json", "w", encoding="utf-8") as f:
+              json.dump(payload, f, ensure_ascii=False)
+
+          subprocess.run([
+              "curl",
+              "-H", "Content-Type: application/json",
+              "-d", "@payload.json",
+              os.environ["DISCORD_WEBHOOK_URL"]
+          ], check=True)
+          PY
