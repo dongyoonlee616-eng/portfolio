@@ -1,9 +1,18 @@
-name: Discord Push Notify
+name: Discord Notification
 
 on:
   push:
     branches:
       - main
+      - master
+  release:
+    types: [published]
+  pull_request:
+    types: [opened, reopened, synchronize]
+  workflow_run:
+    workflows: ["*"]
+    types:
+      - completed
 
 jobs:
   discord:
@@ -12,100 +21,78 @@ jobs:
     steps:
       - name: Send Discord Embed
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          GITHUB_EVENT_PATH: ${{ github.event_path }}
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          python - <<'PY'
-          import json
-          import os
-          import subprocess
+          if [ "${{ github.event_name }}" = "push" ]; then
+            TITLE="🟢 Push 완료"
+            COLOR=5763719
+            DESC="새 커밋이 올라왔습니다."
+            URL="https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
+            MESSAGE="${{ github.event.head_commit.message }}"
 
-          event_path = os.environ["GITHUB_EVENT_PATH"]
+          elif [ "${{ github.event_name }}" = "release" ]; then
+            TITLE="🔵 Release 등록"
+            COLOR=3447003
+            DESC="새 릴리즈가 등록되었습니다."
+            URL="${{ github.event.release.html_url }}"
+            MESSAGE="${{ github.event.release.tag_name }}"
 
-          with open(event_path, "r", encoding="utf-8") as f:
-              event = json.load(f)
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            TITLE="🟡 Pull Request"
+            COLOR=16776960
+            DESC="Pull Request가 업데이트되었습니다."
+            URL="${{ github.event.pull_request.html_url }}"
+            MESSAGE="${{ github.event.pull_request.title }}"
 
-          repo = event["repository"]["full_name"]
-          repo_url = event["repository"]["html_url"]
-          branch = event["ref"].replace("refs/heads/", "")
-          pusher = event.get("pusher", {}).get("name", "unknown")
-          compare_url = event.get("compare", repo_url)
+          elif [ "${{ github.event_name }}" = "workflow_run" ] && [ "${{ github.event.workflow_run.conclusion }}" = "failure" ]; then
+            TITLE="🔴 GitHub Actions 실패"
+            COLOR=15548997
+            DESC="워크플로 실행에 실패했습니다."
+            URL="${{ github.event.workflow_run.html_url }}"
+            MESSAGE="${{ github.event.workflow_run.name }}"
 
-          commits = event.get("commits", [])
-          commit_count = len(commits)
+          else
+            exit 0
+          fi
 
-          head_commit = event.get("head_commit") or {}
-          commit_message = head_commit.get("message", "No commit message")
-          commit_url = head_commit.get("url", compare_url)
-          commit_id = head_commit.get("id", "")[:7]
-          author = head_commit.get("author", {}).get("name", pusher)
+          TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-          added = set()
-          modified = set()
-          removed = set()
-
-          for commit in commits:
-              added.update(commit.get("added", []))
-              modified.update(commit.get("modified", []))
-              removed.update(commit.get("removed", []))
-
-          if len(commit_message) > 900:
-              commit_message = commit_message[:900] + "..."
-
-          payload = {
-              "username": "Portfolio Update",
-              "embeds": [
-                  {
-                      "title": "🚀 Portfolio Push 완료",
-                      "url": compare_url,
-                      "description": f"**{repo}** 저장소에 새로운 코드가 올라왔습니다.",
-                      "color": 7312127,
-                      "fields": [
-                          {
-                              "name": "브랜치",
-                              "value": f"`{branch}`",
-                              "inline": True
-                          },
-                          {
-                              "name": "커밋 수",
-                              "value": f"`{commit_count}`개",
-                              "inline": True
-                          },
-                          {
-                              "name": "작성자",
-                              "value": f"`{author}`",
-                              "inline": True
-                          },
-                          {
-                              "name": "최근 커밋",
-                              "value": f"[`{commit_id}`]({commit_url}) {commit_message}",
-                              "inline": False
-                          },
-                          {
-                              "name": "변경 파일",
-                              "value": f"🟢 추가 `{len(added)}`개\n🟡 수정 `{len(modified)}`개\n🔴 삭제 `{len(removed)}`개",
-                              "inline": True
-                          },
-                          {
-                              "name": "링크",
-                              "value": f"[변경 내용 보기]({compare_url})\n[저장소 열기]({repo_url})",
-                              "inline": True
-                          }
-                      ],
-                      "footer": {
-                          "text": "Dong-Yoon Lee Portfolio"
-                      }
-                  }
+          curl -H "Content-Type: application/json" \
+            -X POST \
+            -d "{
+              \"embeds\": [
+                {
+                  \"title\": \"$TITLE\",
+                  \"description\": \"$DESC\",
+                  \"color\": $COLOR,
+                  \"url\": \"$URL\",
+                  \"fields\": [
+                    {
+                      \"name\": \"📦 Repository\",
+                      \"value\": \"${{ github.repository }}\",
+                      \"inline\": true
+                    },
+                    {
+                      \"name\": \"🌿 Branch\",
+                      \"value\": \"${{ github.ref_name }}\",
+                      \"inline\": true
+                    },
+                    {
+                      \"name\": \"👤 Author\",
+                      \"value\": \"${{ github.actor }}\",
+                      \"inline\": true
+                    },
+                    {
+                      \"name\": \"💬 Message\",
+                      \"value\": \"$MESSAGE\",
+                      \"inline\": false
+                    }
+                  ],
+                  \"footer\": {
+                    \"text\": \"GitHub Actions\"
+                  }, 
+                  \"timestamp\": \"$TIME\"
+                }
               ]
-          }
-
-          with open("payload.json", "w", encoding="utf-8") as f:
-              json.dump(payload, f, ensure_ascii=False)
-
-          subprocess.run([
-              "curl",
-              "-H", "Content-Type: application/json",
-              "-d", "@payload.json",
-              os.environ["DISCORD_WEBHOOK_URL"]
-          ], check=True)
-          PY
+            }" \
+            "$WEBHOOK"
