@@ -10,7 +10,7 @@ HTML, CSS, JavaScript를 기반으로 제작되었으며,
 ## 🌐 배포 주소
 
 🔗 https://dongyoonlee616-eng.github.io/portfolio/
-📈 최신 버전 : 1.0.3
+📈 최신 버전 : 1.1.0
 
 ---
 
@@ -78,7 +78,8 @@ portfolio/
 ├── contact.html
 ├── 404.html
 ├── projects/
-│   └── portfolio.html
+│   ├── portfolio.html
+│		 └── mgh.html
 ├── assets/
 │   ├── css/
 │   │   ├── style.css
