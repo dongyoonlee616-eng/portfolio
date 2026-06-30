@@ -79,7 +79,7 @@ portfolio/
 ├── 404.html
 ├── projects/
 │   ├── portfolio.html
-│		 └── mgh.html
+│   └── mgh.html
 ├── assets/
 │   ├── css/
 │   │   ├── style.css
